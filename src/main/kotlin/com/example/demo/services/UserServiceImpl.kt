@@ -17,7 +17,7 @@ class UserServiceImpl : UserService {
 
     override fun validateUser(email: String, password: String): User? {
         var emailLower = ""
-        if(email != null) emailLower = email.toLowerCase();
+        if (email != null) emailLower = email.toLowerCase();
         return userRepository?.findByEmailAndPassword(emailLower, password);
     }
 

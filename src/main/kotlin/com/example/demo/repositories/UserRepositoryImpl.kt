@@ -48,7 +48,7 @@ class UserRepositoryImpl : UserRepository {
 
     override fun findByEmailAndPassword(email: String?, password: String?): User? {
         try {
-            val user: User? = jdbcTemplate!!.queryForObject<com.example.demo.domain.User?>(SQL_FIND_BY_EMAIL, arrayOf<kotlin.Any?>(email), userRowMapper)
+            val user: User? = jdbcTemplate!!.queryForObject(SQL_FIND_BY_EMAIL, arrayOf(email), userRowMapper)
             if (!BCrypt.checkpw(password, user!!.password)) throw EtAuthException("Invalid email/password")
             return user
         } catch (e: EmptyResultDataAccessException) {

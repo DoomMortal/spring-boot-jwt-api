@@ -29,14 +29,11 @@ class UserResource {
         val password = userMap["password"] as String?
         val user = userService!!.validateUser(email!!, password!!)
 
-        //ResponseEntity<Map<String?, String?>?>?
-
-        //return ResponseEntity<Map<String?, String?>?>(generateJWTToken(user!!)!!, HttpStatus.OK)
         return ResponseEntity(generateJWTToken(user!!), HttpStatus.OK)
     }
 
     @PostMapping("/register")
-    fun registerUser(@RequestBody userMap: Map<String, Any>) : ResponseEntity<Map<String, String>> {
+    fun registerUser(@RequestBody userMap: Map<String, Any>): ResponseEntity<Map<String, String>> {
         val firstName: String = userMap.get("firstName") as String
         val lastName: String = userMap.get("lastName") as String
         val email: String = userMap.get("email") as String
@@ -47,8 +44,7 @@ class UserResource {
         return ResponseEntity(map, HttpStatus.OK)*/
 
         val user: User? = userService!!.registerUser(firstName, lastName, email, password)
-        return ResponseEntity(HttpStatus.OK)
-        //return ResponseEntity<Any?>(generateJWTToken(user), HttpStatus.OK)
+        return ResponseEntity(generateJWTToken(user!!), HttpStatus.OK)
     }
 
     private fun generateJWTToken(user: User): Map<String, String> {
