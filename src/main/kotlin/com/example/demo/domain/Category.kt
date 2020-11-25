@@ -5,5 +5,4 @@ class Category(val categoryId: Int,
                val title: String,
                val description: String,
                val totalExpense: Double) {
-
 }
